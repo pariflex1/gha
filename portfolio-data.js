@@ -14,8 +14,8 @@ const PORTFOLIO_DATA = {
     ],
     email: "contact@ghaconstruction.in",
     logo: {
-      wide: "images/Logo/logo wide.webp",
-      wideWhite: "images/Logo/logo wide white.webp",
+      wide: "images/Logo/logo-wide.webp",
+      wideWhite: "images/Logo/logo-wide-white.webp",
       square: "images/Logo/logo-512x512.webp"
     },
     address: {
