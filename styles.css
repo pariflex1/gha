@@ -210,27 +210,27 @@ img {
 }
 
 .logo-img-light {
-  display: block;
+  display: block !important;
 }
 
 .logo-img-dark {
-  display: none;
+  display: none !important;
 }
 
 .header.scrolled .logo-img-light {
-  display: none;
+  display: none !important;
 }
 
 .header.scrolled .logo-img-dark {
-  display: block;
+  display: block !important;
 }
 
 .footer .logo-img-light {
-  display: block;
+  display: block !important;
 }
 
 .footer .logo-img-dark {
-  display: none;
+  display: none !important;
 }
 
 .logo-icon {
