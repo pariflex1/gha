@@ -4,6 +4,112 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // === DYNAMIC RENDER SERVICES, PROJECTS & TEAM ===
+  if (typeof PORTFOLIO_DATA !== 'undefined') {
+    // 1. Render services on services.html
+    const servicesContainer = document.getElementById('servicesContainer');
+    if (servicesContainer && PORTFOLIO_DATA.services) {
+      servicesContainer.innerHTML = PORTFOLIO_DATA.services.map((service, index) => {
+        const isEven = index % 2 === 0;
+        const dirStyle = isEven ? '' : 'direction:rtl;';
+        const alignStyle = isEven ? '' : 'direction:ltr;';
+        const srNo = String(index + 1).padStart(2, '0');
+        return `
+          <div class="safety-grid" style="margin-bottom:80px; ${dirStyle}" id="${service.id}">
+            <div style="${alignStyle}">
+              <div class="overview-image animate-on-scroll">
+                <img src="${service.image}" alt="${service.title}">
+              </div>
+            </div>
+            <div style="${alignStyle}">
+              <div class="overview-content animate-on-scroll">
+                <span class="section-label">Service ${srNo}</span>
+                <h2>${service.title}</h2>
+                <p>${service.description}</p>
+                <div class="overview-features">
+                  ${service.features.map(f => `<div class="overview-feature"><span class="check">&#10003;</span> ${f}</div>`).join('')}
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get a Quote &#8594;</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 2. Render services list on index.html (Our Services section)
+    const servicesGrid = document.querySelector('.services-grid');
+    if (servicesGrid && PORTFOLIO_DATA.services) {
+      servicesGrid.innerHTML = PORTFOLIO_DATA.services.map(service => `
+        <div class="service-card animate-on-scroll">
+          <div class="service-icon">${service.icon || '&#127959;'}</div>
+          <h3>${service.title}</h3>
+          <p>${service.description.split('.')[0] + '.'}</p>
+          <a href="services.html#${service.id}" class="btn-link">Learn More &#8594;</a>
+        </div>
+      `).join('');
+    }
+
+    // 3. Render projects on projects.html
+    const projectsGrid = document.getElementById('projectsGrid');
+    if (projectsGrid && PORTFOLIO_DATA.projects) {
+      projectsGrid.innerHTML = PORTFOLIO_DATA.projects.map(project => `
+        <div class="project-card animate-on-scroll" data-category="${project.category}">
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.title}">
+            <span class="project-category">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</span>
+          </div>
+          <div class="project-info">
+            <h3>${project.title}</h3>
+            <span class="location">&#128205; ${project.city}</span>
+            <div style="display:flex;gap:16px;margin:12px 0;font-size:0.85rem;color:var(--gray-400);">
+              <span>&#128207; ${project.area}</span>
+              <span style="color:${project.status === 'Ongoing' ? '#22c55e' : 'var(--orange)'};font-weight:600;">${project.status}</span>
+            </div>
+            <div style="font-size:0.85rem;color:var(--gray-500);margin-bottom:12px;">Cost: ${project.cost} | Year: ${project.year}</div>
+            <p style="font-size:0.9rem;color:var(--gray-600);margin-bottom:16px;">${project.description}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 4. Render featured projects on index.html
+    const featuredProjectsGrid = document.querySelector('.featured-projects .projects-grid');
+    if (featuredProjectsGrid && PORTFOLIO_DATA.projects) {
+      featuredProjectsGrid.innerHTML = PORTFOLIO_DATA.projects.slice(0, 3).map(project => `
+        <div class="project-card animate-on-scroll">
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.title}">
+            <span class="project-category">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</span>
+          </div>
+          <div class="project-info">
+            <h3>${project.title}</h3>
+            <span class="location">&#128205; ${project.city}</span>
+            <a href="projects.html" class="btn-link">View Details &#8594;</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 5. Render team members on who-we-are.html
+    const teamGrid = document.querySelector('.team-grid');
+    if (teamGrid && PORTFOLIO_DATA.team) {
+      teamGrid.innerHTML = PORTFOLIO_DATA.team.map(member => `
+        <div class="team-card animate-on-scroll">
+          <div class="team-card-image">
+            <img src="${member.image}" alt="${member.name}">
+          </div>
+          <div class="team-card-info">
+            <h3>${member.name}</h3>
+            <p style="color:var(--orange);font-weight:600;margin-bottom:4px;">${member.designation}</p>
+            <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:4px;">Expertise: ${member.expertise}</p>
+            ${member.staff !== '—' ? `<p style="font-size:0.85rem;color:var(--gray-400);">Staff Managed: ${member.staff}</p>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
   // === HEADER SCROLL EFFECT ===
   const header = document.getElementById('header');
   if (header && !header.classList.contains('scrolled')) {

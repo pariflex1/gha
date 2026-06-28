@@ -203,6 +203,36 @@ img {
   transition: var(--transition);
 }
 
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.logo-img-light {
+  display: block;
+}
+
+.logo-img-dark {
+  display: none;
+}
+
+.header.scrolled .logo-img-light {
+  display: none;
+}
+
+.header.scrolled .logo-img-dark {
+  display: block;
+}
+
+.footer .logo-img-light {
+  display: block;
+}
+
+.footer .logo-img-dark {
+  display: none;
+}
+
 .logo-icon {
   width: 44px;
   height: 44px;
