@@ -7,7 +7,7 @@ STYLE:
 * Similar quality to top EPC and construction companies
 * Clean layout with large imagery
 * White background with subtle gray sections
-* Dark navy (#0F172A) and construction orange (#F97316) accent colors
+* Dark navy (#0F172A) and construction orange (#F5B027) accent colors
 * Responsive design for desktop, tablet, and mobile
 * SEO-friendly structure
 * Smooth animations and hover effects
